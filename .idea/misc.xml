@@ -11,6 +11,8 @@
       <list>
         <option value="$PROJECT_DIR$/foundation/pom.xml" />
         <option value="$PROJECT_DIR$/foundation/core/pom.xml" />
+        <option value="$PROJECT_DIR$/business/pom.xml" />
+        <option value="$PROJECT_DIR$/business/account-service/pom.xml" />
       </list>
     </option>
   </component>
