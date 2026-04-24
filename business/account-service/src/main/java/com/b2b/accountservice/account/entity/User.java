@@ -14,10 +14,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * User.java
@@ -33,12 +36,15 @@ public class User extends BaseEntity implements UserDetails {
     private String username;
     private String password;
     private String fullName;
+    private Set<String> roles;
 
     // Khong can khai bao cac field audit: createdBy, createdDate, updatedBy, updatedDate
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_"))
+                .collect(Collectors.toList());
     }
 
     @Override
