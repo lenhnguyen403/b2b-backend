@@ -7,8 +7,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="account-service" />
         <module name="core" />
+        <module name="security" />
+        <module name="pdf" />
+        <module name="mail" />
+        <module name="kafka" />
+        <module name="elastic" />
+        <module name="account-service" />
+        <module name="redis" />
       </profile>
     </annotationProcessing>
   </component>
@@ -17,7 +23,13 @@
       <module name="account-service" options="" />
       <module name="business" options="" />
       <module name="core" options="" />
+      <module name="elastic" options="" />
       <module name="foundation" options="" />
+      <module name="kafka" options="" />
+      <module name="mail" options="" />
+      <module name="pdf" options="" />
+      <module name="redis" options="" />
+      <module name="security" options="" />
     </option>
   </component>
 </project>

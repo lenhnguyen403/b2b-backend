@@ -5,6 +5,12 @@
     <file url="file://$PROJECT_DIR$/business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foundation/core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foundation/core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foundation/elastic/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foundation/kafka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foundation/mail/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foundation/pdf/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foundation/redis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foundation/security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foundation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foundation/src/main/resources" charset="UTF-8" />
   </component>

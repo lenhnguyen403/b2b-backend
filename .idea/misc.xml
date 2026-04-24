@@ -13,6 +13,12 @@
         <option value="$PROJECT_DIR$/foundation/core/pom.xml" />
         <option value="$PROJECT_DIR$/business/pom.xml" />
         <option value="$PROJECT_DIR$/business/account-service/pom.xml" />
+        <option value="$PROJECT_DIR$/foundation/security/pom.xml" />
+        <option value="$PROJECT_DIR$/foundation/kafka/pom.xml" />
+        <option value="$PROJECT_DIR$/foundation/elastic/pom.xml" />
+        <option value="$PROJECT_DIR$/foundation/mail/pom.xml" />
+        <option value="$PROJECT_DIR$/foundation/redis/pom.xml" />
+        <option value="$PROJECT_DIR$/foundation/pdf/pom.xml" />
       </list>
     </option>
   </component>

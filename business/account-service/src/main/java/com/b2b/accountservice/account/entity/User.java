@@ -8,6 +8,8 @@
 package com.b2b.accountservice.account.entity;
 
 import com.b2b.core.entity.BaseEntity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,8 @@ import java.util.List;
  *
  * @author Nguyen
  */
+@Entity
+@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -29,6 +33,8 @@ public class User extends BaseEntity implements UserDetails {
     private String username;
     private String password;
     private String fullName;
+
+    // Khong can khai bao cac field audit: createdBy, createdDate, updatedBy, updatedDate
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -42,7 +48,7 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return "";
+        return username;
     }
 
     @Override
