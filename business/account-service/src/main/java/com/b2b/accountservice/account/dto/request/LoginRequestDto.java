@@ -7,8 +7,10 @@
 
 package com.b2b.accountservice.account.dto.request;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * LoginRequestDto.java
@@ -16,6 +18,10 @@ import lombok.Data;
  * @author Nguyen
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class LoginRequestDto {
+    private String email;
+    private String password;
 }

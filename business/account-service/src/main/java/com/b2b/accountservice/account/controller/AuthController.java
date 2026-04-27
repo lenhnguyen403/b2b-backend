@@ -20,10 +20,7 @@ import com.b2b.core.component.ResponseData;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * AuthController.java
@@ -56,4 +53,6 @@ public class AuthController {
         authService.refreshToken(dto.getRefreshToken());
         return new B2BResponseEntity<>(builderComponent.buildResponse(null, request));
     }
+
+
 }

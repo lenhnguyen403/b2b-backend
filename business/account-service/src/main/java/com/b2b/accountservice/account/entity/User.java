@@ -8,17 +8,19 @@
 package com.b2b.accountservice.account.entity;
 
 import com.b2b.core.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,14 +31,18 @@ import java.util.stream.Collectors;
  */
 @Entity
 @Table(name = "users")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class User extends BaseEntity implements UserDetails {
+    private String email;
     private String username;
+
+    @JsonIgnore // bo qua khi tra ve response User
     private String password;
     private String fullName;
-    private Set<String> roles;
+    private Set<Role> roles = new HashSet<>();
 
     // Khong can khai bao cac field audit: createdBy, createdDate, updatedBy, updatedDate
 
@@ -49,12 +55,12 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public String getPassword() {
-        return "";
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override
