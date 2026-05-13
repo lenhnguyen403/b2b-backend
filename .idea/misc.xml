@@ -18,6 +18,15 @@
         <option value="$PROJECT_DIR$/foundation/mail/pom.xml" />
         <option value="$PROJECT_DIR$/foundation/redis/pom.xml" />
         <option value="$PROJECT_DIR$/foundation/pdf/pom.xml" />
+        <option value="$PROJECT_DIR$/business/product-catalog-service/pom.xml" />
+        <option value="$PROJECT_DIR$/business/cart-service/pom.xml" />
+        <option value="$PROJECT_DIR$/business/search-service/pom.xml" />
+        <option value="$PROJECT_DIR$/business/order-service/pom.xml" />
+        <option value="$PROJECT_DIR$/business/payment-service/pom.xml" />
+        <option value="$PROJECT_DIR$/business/notification-service/pom.xml" />
+        <option value="$PROJECT_DIR$/business/cif-service/pom.xml" />
+        <option value="$PROJECT_DIR$/business/eureka-registry/pom.xml" />
+        <option value="$PROJECT_DIR$/business/api-gateway/pom.xml" />
       </list>
     </option>
   </component>

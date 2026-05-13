@@ -7,14 +7,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="cart-service" />
+        <module name="mail" />
+        <module name="cif-service" />
+        <module name="redis" />
+        <module name="notification-service" />
         <module name="core" />
         <module name="security" />
         <module name="pdf" />
-        <module name="mail" />
+        <module name="payment-service" />
+        <module name="product-catalog-service" />
+        <module name="search-service" />
         <module name="kafka" />
         <module name="elastic" />
+        <module name="api-gateway" />
+        <module name="eureka-registry" />
+        <module name="order-service" />
         <module name="account-service" />
-        <module name="redis" />
       </profile>
     </annotationProcessing>
   </component>
@@ -22,13 +31,19 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="account-service" options="" />
       <module name="business" options="" />
+      <module name="cart-service" options="" />
       <module name="core" options="" />
       <module name="elastic" options="" />
       <module name="foundation" options="" />
       <module name="kafka" options="" />
       <module name="mail" options="" />
+      <module name="notification-service" options="" />
+      <module name="order-service" options="" />
+      <module name="payment-service" options="" />
       <module name="pdf" options="" />
+      <module name="product-catalog-service" options="" />
       <module name="redis" options="" />
+      <module name="search-service" options="" />
       <module name="security" options="" />
     </option>
   </component>

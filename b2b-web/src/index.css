@@ -1,0 +1,21 @@
+@import "App.css";
+
+@theme {
+
+}
+
+* {
+    box-sizing: border-box;
+    /*margin: 0;*/
+    /*padding: 0;*/
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    transition: background 0.3s ease, color 0.3s ease;
+}

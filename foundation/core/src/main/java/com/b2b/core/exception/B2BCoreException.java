@@ -13,9 +13,6 @@ package com.b2b.core.exception;
  * @author Nguyen
  */
 public class B2BCoreException extends RuntimeException {
-    public B2BCoreException() {
-    }
-
     public B2BCoreException(String message) {
         super(message);
     }

@@ -12,7 +12,17 @@
     <description>business</description>
 
     <modules>
+        <module>eureka-registry</module>
+        <module>api-gateway</module>
+
         <module>account-service</module>
+        <module>cart-service</module>
+        <module>cif-service</module>
+        <module>notification-service</module>
+        <module>order-service</module>
+        <module>payment-service</module>
+        <module>product-catalog-service</module>
+        <module>search-service</module>
     </modules>
 
     <properties>
@@ -24,6 +34,7 @@
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <jackson.version>2.18.3</jackson.version>
+        <jjwt.version>0.11.5</jjwt.version>
     </properties>
 
     <dependencyManagement>
@@ -89,6 +100,22 @@
             </dependency>
 
             <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
                 <version>${jackson.version}</version>
@@ -109,6 +136,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>

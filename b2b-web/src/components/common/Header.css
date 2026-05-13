@@ -1,0 +1,11 @@
+
+.avatar-dropdown {
+    visibility: hidden;
+    opacity: 0;
+    transition: all .2s ease;
+}
+
+.active {
+    visibility: visible;
+    opacity: 1;
+}
