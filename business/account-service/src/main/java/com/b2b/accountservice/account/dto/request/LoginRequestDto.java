@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
  * @author Nguyen
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class LoginRequestDto {
     private String email;

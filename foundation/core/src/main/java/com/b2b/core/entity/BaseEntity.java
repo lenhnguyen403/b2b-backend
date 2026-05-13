@@ -7,7 +7,6 @@
 
 package com.b2b.core.entity;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,21 +27,25 @@ import java.time.LocalDateTime;
 @MappedSuperclass   // Danh dau la superclass cho cac entities
 @Getter
 @Setter
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class)  // Lang nghe su kien audit
 public class BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    @Column(name = "created_by")
     @CreatedBy
     private String createdBy;
 
+    @Column(name = "created_at")
     @CreatedDate
     private LocalDateTime createdAt;
 
+    @Column(name = "updated_by")
     @LastModifiedBy
     private String updatedBy;
 
+    @Column(name = "updated_at")
     @LastModifiedDate
     private LocalDateTime updatedAt;
 }

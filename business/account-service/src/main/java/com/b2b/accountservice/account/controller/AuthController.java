@@ -20,6 +20,7 @@ import com.b2b.core.component.ResponseData;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -38,7 +39,7 @@ public class AuthController {
     public B2BResponseEntity<RegisterResponse> register(@Valid @RequestBody RegisterRequestDto registerRequest, HttpServletRequest request) {
         RegisterResponse dto = authService.register(registerRequest);
         ResponseData<RegisterResponse> responseData = builderComponent.buildResponse(dto, request);
-        return new B2BResponseEntity<>(responseData);
+        return new B2BResponseEntity<>(responseData, HttpStatus.CREATED);
     }
 
     @PostMapping(ApiConstants.UserEntity.LOGIN)
@@ -54,5 +55,23 @@ public class AuthController {
         return new B2BResponseEntity<>(builderComponent.buildResponse(null, request));
     }
 
+    @PostMapping(ApiConstants.UserEntity.REFRESH_TOKEN)
+    public B2BResponseEntity<?> refreshToken() {
+        return null;
+    }
 
+    @PostMapping(ApiConstants.UserEntity.FORGOT_PASSWORD)
+    public B2BResponseEntity<?> forgotPassword() {
+        return null;
+    }
+
+    @PostMapping(ApiConstants.UserEntity.CONFIRM_OTP)
+    public B2BResponseEntity<?> confirmOtp() {
+        return null;
+    }
+
+    @PostMapping(ApiConstants.UserEntity.CHANGE_PASSWORD_OTP)
+    public B2BResponseEntity<?> changePasswordOtp() {
+        return null;
+    }
 }

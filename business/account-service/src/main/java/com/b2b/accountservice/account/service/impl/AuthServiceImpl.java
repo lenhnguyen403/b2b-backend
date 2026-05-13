@@ -11,9 +11,14 @@ import com.b2b.accountservice.account.dto.request.LoginRequestDto;
 import com.b2b.accountservice.account.dto.request.RegisterRequestDto;
 import com.b2b.accountservice.account.dto.response.LoginResponse;
 import com.b2b.accountservice.account.dto.response.RegisterResponse;
+import com.b2b.accountservice.account.entity.Role;
 import com.b2b.accountservice.account.entity.User;
+import com.b2b.accountservice.account.enumeration.RoleType;
+import com.b2b.accountservice.account.repository.RoleRepository;
 import com.b2b.accountservice.account.repository.UserRepository;
 import com.b2b.accountservice.account.service.AuthService;
+import com.b2b.accountservice.utils.AccountUtil;
+import com.b2b.core.exception.B2BException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,21 +34,24 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final AccountUtil accountUtil;
 
     @Override
     public LoginResponse login(LoginRequestDto loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail())
-                .orElseThrow(() -> new RuntimeException("Invalid email or password"));
+                .orElseThrow(() -> new B2BException("Invalid email or password"));
 
         if (!bCryptPasswordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Invalid password");
+            throw new B2BException("Invalid password");
         }
 
         LoginResponse response = LoginResponse.builder()
-                .accessToken("")
-                .refreshToken("")
-                .tokenType("")
+                .accessToken(accountUtil.generateToken(user))
+                .refreshToken(accountUtil.generateRefreshToken(user))
+                .tokenType("Bearer")
+                .user(user)
                 .build();
 
         return response;
@@ -52,17 +60,22 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public RegisterResponse register(RegisterRequestDto registerRequest) {
         if (!registerRequest.getPassword().equals(registerRequest.getConfirmPassword())) {
-            throw new RuntimeException("Passwords don't match");
+            throw new B2BException("Passwords don't match");
         }
 
         if (userRepository.findByEmail(registerRequest.getEmail()).isPresent()) {
-            throw new RuntimeException("This email is already registered");
+            throw new B2BException("This email is already registered");
         }
 
-        User user = new User();
-        user.setEmail(registerRequest.getEmail());
-        user.setPassword(bCryptPasswordEncoder.encode(registerRequest.getPassword()));
-        user.setFullName(registerRequest.getFullName());
+        Role role = roleRepository.findByName(registerRequest.getRegisterType())
+                .orElseThrow(() -> new B2BException("Role not found"));
+
+        User user = User.builder()
+                .email(registerRequest.getEmail())
+                .password(bCryptPasswordEncoder.encode(registerRequest.getPassword()))
+                .fullName(registerRequest.getFullName())
+                .role(role)
+                .build();
 
         User savedUser = userRepository.save(user);
 

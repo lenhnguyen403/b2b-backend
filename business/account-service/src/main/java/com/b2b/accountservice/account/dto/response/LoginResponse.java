@@ -7,6 +7,7 @@
 
 package com.b2b.accountservice.account.dto.response;
 
+import com.b2b.accountservice.account.entity.User;
 import lombok.Builder;
 import lombok.Data;
 
@@ -21,4 +22,6 @@ public class LoginResponse {
     private String accessToken;
     private String refreshToken;
     private String tokenType;
+
+    private User user;
 }
