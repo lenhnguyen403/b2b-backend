@@ -19,6 +19,9 @@ import com.b2b.accountservice.account.repository.UserRepository;
 import com.b2b.accountservice.account.service.AuthService;
 import com.b2b.accountservice.utils.AccountUtil;
 import com.b2b.core.exception.B2BException;
+import com.b2b.core.utils.OtpUtil;
+import com.b2b.mail.service.EmailService;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -37,6 +40,8 @@ public class AuthServiceImpl implements AuthService {
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final AccountUtil accountUtil;
+    private final OtpUtil otpUtil;
+    private final EmailService emailService;
 
     @Override
     public LoginResponse login(LoginRequestDto loginRequest) {
@@ -82,6 +87,18 @@ public class AuthServiceImpl implements AuthService {
         RegisterResponse response = RegisterResponse.builder()
                 .user(savedUser)
                 .build();
+
+        // Generate OTP
+        String otp = otpUtil.generateOtpCode();
+
+        // Luu OTP vao DB/Redis
+
+        // Gui OTP ve mail
+        try {
+            emailService.sendOTP(registerRequest.getEmail(), otp);
+        } catch (MessagingException ex) {
+            ex.printStackTrace();
+        }
 
         return response;
     }
