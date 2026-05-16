@@ -19,3 +19,26 @@ body {
     min-height: 100vh;
     transition: background 0.3s ease, color 0.3s ease;
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 255, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.register-bg-image {
+    background-image: url("./assets/background_login_updated.webp");
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.15);
+}

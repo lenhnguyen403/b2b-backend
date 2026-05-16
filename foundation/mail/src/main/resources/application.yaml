@@ -1,3 +1,16 @@
 spring:
   application:
     name: mail
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: nguyenlee11030403@gmail.com
+    password: nhvh uhdg zmnl fenb
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
