@@ -58,6 +58,8 @@ public class User extends BaseEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserStatus status;
 
+    private boolean verified;
+
     @Column(name = "sign_in_count")
     private Integer signInCount;
 

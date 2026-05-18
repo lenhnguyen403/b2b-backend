@@ -8,6 +8,7 @@
 package com.b2b.accountservice.account.dto.response;
 
 import com.b2b.accountservice.account.entity.User;
+import com.b2b.accountservice.account.enumeration.UserStatus;
 import lombok.Builder;
 import lombok.Data;
 
@@ -19,5 +20,9 @@ import lombok.Data;
 @Data
 @Builder
 public class RegisterResponse {
-    private User user;
+    private String email;
+    private boolean verified;
+    private UserStatus status;
+    private String message;
+    private long otpExpiredIn;
 }

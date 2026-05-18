@@ -14,6 +14,7 @@ import com.b2b.accountservice.account.dto.response.RegisterResponse;
 import com.b2b.accountservice.account.entity.Role;
 import com.b2b.accountservice.account.entity.User;
 import com.b2b.accountservice.account.enumeration.RoleType;
+import com.b2b.accountservice.account.enumeration.UserStatus;
 import com.b2b.accountservice.account.repository.RoleRepository;
 import com.b2b.accountservice.account.repository.UserRepository;
 import com.b2b.accountservice.account.service.AuthService;
@@ -26,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * AuthServiceImpl.java
@@ -52,6 +54,14 @@ public class AuthServiceImpl implements AuthService {
             throw new B2BException("Invalid password");
         }
 
+        if (!user.isVerified()) {
+            throw new B2BException("Account is not verified");
+        }
+
+        if (user.getStatus() != UserStatus.ACTIVE) {
+            throw new B2BException("Account is not active");
+        }
+
         LoginResponse response = LoginResponse.builder()
                 .accessToken(accountUtil.generateToken(user))
                 .refreshToken(accountUtil.generateRefreshToken(user))
@@ -62,6 +72,7 @@ public class AuthServiceImpl implements AuthService {
         return response;
     }
 
+    @Transactional
     @Override
     public RegisterResponse register(RegisterRequestDto registerRequest) {
         if (!registerRequest.getPassword().equals(registerRequest.getConfirmPassword())) {
@@ -80,13 +91,11 @@ public class AuthServiceImpl implements AuthService {
                 .password(bCryptPasswordEncoder.encode(registerRequest.getPassword()))
                 .fullName(registerRequest.getFullName())
                 .role(role)
+                .status(UserStatus.PENDING)
+                .verified(false)
                 .build();
 
         User savedUser = userRepository.save(user);
-
-        RegisterResponse response = RegisterResponse.builder()
-                .user(savedUser)
-                .build();
 
         // Generate OTP
         String otp = otpUtil.generateOtpCode();
@@ -97,8 +106,17 @@ public class AuthServiceImpl implements AuthService {
         try {
             emailService.sendOTP(registerRequest.getEmail(), otp);
         } catch (MessagingException ex) {
-            ex.printStackTrace();
+            log.error("Failed to send OTP email", ex);
+            throw new B2BException("Cannot send OTP email");
         }
+
+        RegisterResponse response = RegisterResponse.builder()
+                .email(savedUser.getEmail())
+                .verified(savedUser.isVerified())
+                .status(savedUser.getStatus())
+                .message("OTP has been sent to your email")
+                .otpExpiredIn(300)
+                .build();
 
         return response;
     }

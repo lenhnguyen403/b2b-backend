@@ -25,7 +25,6 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
-
     @Override
     public void sendOTP(String email, String otp) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
@@ -56,8 +55,8 @@ public class EmailServiceImpl implements EmailService {
                         "            <tr>\n" +
                         "              <td style=\"padding:12px 24px 8px 24px; color:#374151; font-size:15px; line-height:1.6;\">\n" +
                         "                <p style=\"margin:0 0 12px 0;\">\n" +
-                        "                  Cam on ban da dang ky dich vu cua chung toi.<br/>\n" +
-                        "                  Hay nhap ma otp de kich hoat tai khoan.\n" +
+                        "                  Cảm ơn bạn đã đăng ký dịch vụ của chúng tôi.<br/>\n" +
+                        "                  Hãy nhập mã otp để kích hoạt tài khoản.\n" +
                         "                </p>\n" +
                         "                <p style=\"margin:0 0 10px 0; color:#6b7280; font-size:14px;\">Mã OTP:</p>\n" +
                         "                <div style=\"display:inline-block; background:#111827; color:#ffffff; padding:14px 20px; border-radius:10px; font-size:28px; font-weight:700; letter-spacing:2px; line-height:1;\">\n" +

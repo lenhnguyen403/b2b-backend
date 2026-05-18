@@ -2,7 +2,7 @@ import ToastMessage from "../messages/ToastMessage.jsx";
 import {register} from "../services/auth.service.js";
 import {useAuthForm} from "../hooks/useAuthForm.jsx";
 import {Link} from "react-router-dom";
-import {FaArrowLeftLong, FaArrowRight} from "react-icons/fa6";
+import {FaArrowRight} from "react-icons/fa6";
 import RegisterForm from "../components/RegisterForm.jsx";
 import AuthSidebar from "../components/AuthSidebar.jsx";
 
@@ -38,12 +38,12 @@ const Register = ({registerType}) => {
             setLoading(true)
 
             const response = await register(request)
+            navigate("/verify-otp")
 
             // console.log(response)
 
             if (response.status === 201) {
-                ToastMessage.success("Đăng ký thành công!")
-                navigate("/dang-nhap")
+                ToastMessage.success()
             } else {
                 console.log("Có lỗi xảy ra khi đăng ký tài khoản")
             }
